@@ -11,20 +11,20 @@ function App() {
 
     // Connection event handlers
     socket.on("connect", () => {
-      console.log("✅ Connected to server");
+      console.log("Connected to server");
       setConnected(true);
       // Request initial data after connection
       socket.emit("request_initial_data");
     });
 
     socket.on("disconnect", () => {
-      console.log("❌ Disconnected from server");
+      console.log("Disconnected from server");
       setConnected(false);
     });
 
     // Listen for vote updates from server
     socket.on("vote_update", (updatedVotes) => {
-      console.log("📊 Received vote update:", updatedVotes);
+      console.log("Received vote update:", updatedVotes);
       setVotes(updatedVotes);
     });
 
@@ -36,7 +36,7 @@ function App() {
 
   // Send vote to server
   const handleVote = (choice) => {
-    console.log("🗳️ Voting for:", choice);
+    console.log("Voting for:", choice);
     const socket = io("http://localhost:5000");
     socket.emit("cast_vote", choice);
   };

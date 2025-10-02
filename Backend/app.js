@@ -27,17 +27,17 @@ app.get("/", (req, res) => {
 
 // Socket.IO event handlers
 io.on("connection", (socket) => {
-  console.log("✅ Client connected:", socket.id);
+  console.log("Client connected:", socket.id);
 
   // Send current votes when client requests
   socket.on("request_initial_data", () => {
-    console.log("📊 Sending initial data to:", socket.id);
+    console.log("Sending initial data to:", socket.id);
     socket.emit("vote_update", votes);
   });
 
   // Handle incoming votes
   socket.on("cast_vote", (choice) => {
-    console.log("🗳️ Received vote:", choice, "from:", socket.id);
+    console.log("Received vote:", choice, "from:", socket.id);
     if (votes.hasOwnProperty(choice)) {
       votes[choice]++;
       console.log("Current votes:", votes);
@@ -50,7 +50,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log("❌ Client disconnected:", socket.id);
+    console.log("Client disconnected:", socket.id);
   });
 });
 
